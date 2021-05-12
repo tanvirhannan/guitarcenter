@@ -5,6 +5,14 @@ import { Helmet } from 'react-helmet'
 import Hero from '../components/hero'
 import Layout from '../components/layout'
 import ArticlePreview from '../components/article-preview'
+import styles from './blog.module.css'
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Link
+} from "react-router-dom";
+
 
 class RootIndex extends React.Component {
   render() {
@@ -15,11 +23,11 @@ class RootIndex extends React.Component {
     return (
       <Layout location={this.props.location}>
         <div style={{ background: '#fff' }}>
-          <Helmet title={siteTitle} />
-          <Hero data={author.node} />
+          {/* <Helmet title={siteTitle} />
+          <Hero data={author.node} /> */}
           <div className="wrapper">
-            <h2 className="section-headline">Recent articles</h2>
-            <ul className="article-list">
+            {/* <h2 className="section-headline">Recent articles</h2> */}
+            {/* <ul className="article-list">
               {posts.map(({ node }) => {
                 return (
                   <li key={node.slug}>
@@ -27,7 +35,7 @@ class RootIndex extends React.Component {
                   </li>
                 )
               })}
-            </ul>
+            </ul> */}
           </div>
         </div>
       </Layout>
@@ -39,7 +47,7 @@ export default RootIndex
 
 export const pageQuery = graphql`
   query HomeQuery {
-    allContentfulBlogPost(sort: { fields: [publishDate], order: DESC }) {
+    allContentfulProducts(sort: { fields: [publishDate], order: DESC }) {
       edges {
         node {
           title
@@ -49,11 +57,6 @@ export const pageQuery = graphql`
           heroImage {
             fluid(maxWidth: 350, maxHeight: 196, resizingBehavior: SCALE) {
               ...GatsbyContentfulFluid_tracedSVG
-            }
-          }
-          description {
-            childMarkdownRemark {
-              html
             }
           }
         }
